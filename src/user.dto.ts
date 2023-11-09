@@ -1,16 +1,17 @@
 import { Expose } from 'class-transformer';
+import { UserRole } from './roles.enum';
 
 export class UserDto {
-  @Expose({ groups: ['admin', 'support', 'user'] })
+  @Expose({ groups: [UserRole.ADMIN, UserRole.SUPPORT, UserRole.USER] })
   id: number;
 
-  @Expose({ groups: ['admin', 'support', 'user'] })
+  @Expose({ groups: [UserRole.ADMIN, UserRole.SUPPORT, UserRole.USER] })
   username: string;
 
-  @Expose({ groups: ['admin', 'user'] })
+  @Expose({ groups: [UserRole.ADMIN, UserRole.USER] })
   email: string;
 
-  @Expose({ groups: ['admin', 'support'] })
+  @Expose({ groups: [UserRole.ADMIN, UserRole.SUPPORT] })
   role: string;
 
   constructor(partial: Partial<UserDto>) {
