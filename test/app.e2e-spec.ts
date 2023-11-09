@@ -51,6 +51,18 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('/GET user with no query param', () => {
+    return request(app.getHttpServer()).get('/user').expect(403);
+  });
+
+  it('/GET user with no role', () => {
+    return request(app.getHttpServer()).get('/user?role=').expect(403);
+  });
+
+  it('/GET user with unknown role', () => {
+    return request(app.getHttpServer()).get('/user?role=unknown').expect(403);
+  });
+
   afterAll(async () => {
     await app.close();
   });
